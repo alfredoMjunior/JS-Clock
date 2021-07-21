@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relógio</title>
+    <link rel="icon" href="clock.png">
+
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins';
+            height: 100%;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            transition: .5s;
+            background: linear-gradient(45deg, rgb(33, 179, 4), rgb(207, 188, 16), rgb(101, 6, 179), rgb(119, 9, 170));
+            background-size: 400% 400%;
+            animation: back 10s ease-in-out infinite;
+        }
+
+        @keyframes back {
+            0% {
+                background-position: 0 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0 50%;
+            }
+        }
+
+        .paralax {
+            position: absolute;
+            display: flex;
+            height: 60vh;
+            width: 750px;
+            z-index: 2;
+        }
+
+        .left {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .leftup {
+            width: 100%;
+            height: 50%;
+        }
+
+        .leftdown {
+            width: 100%;
+            height: 50%;
+        }
+
+        .right {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rightup {
+            width: 100%;
+            height: 50%;
+        }
+
+        .rightdown {
+            width: 100%;
+            height: 50%;
+        }
+
+        .conteudo.actrup {
+            transform: rotate3d(5, 1, 1, -60deg);
+            transition: 5s;
+        }
+
+
+        .conteudo.actrdown {
+            transform: rotate3d(5, 1, 1, -320deg);
+            transition: 5s
+        }
+
+        .conteudo.actlup {
+            transform: rotate3d(5, 1, 1, -420deg);
+            transition: 5s
+        }
+
+        .conteudo.actldown {
+            transform: rotate3d(5, 1, 1, 320deg);
+            transition: 5s
+        }
+
+        .conteudo {
+            transform: rotate3d(1, 1, 1, 0deg);
+            min-width: fit-content;
+            height: 40vh;
+            padding: 0px 50px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: white 2px solid;
+            z-index: 1;
+            transition: 5s;
+            animation: fade 2s ease-in-out
+        }
+
+        @keyframes fade {
+            0% {
+                opacity: 0;
+                transform: translateX(-300px);
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .conteudo h1 {
+            color: white;
+            margin: 0;
+        }
+
+        .conteudo div.rel {
+            font-size: 2rem;
+        }
+
+        div.rel h1.relogio {
+            color: white;
+            transition: .5s;
+        }
+    </style>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="paralax">
+        <div class="left">
+            <div class="leftup"></div>
+            <div class="leftdown"></div>
+        </div>
+        <div class="right">
+            <div class="rightup"></div>
+            <div class="rightdown"></div>
+        </div>
+    </div>
+    <div class="conteudo">
+
+        <h1>Horário de Brasília</h1>
+
+        <div class="rel">
+
+            <h1 class="relogio">
+
+            </h1>
+
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+
+    function loop() {
+
+        var time = new Date()
+        var hora = time.getHours()
+        var minutos = time.getMinutes()
+        var segundos = time.getSeconds()
+
+        var relogio = document.querySelector('.relogio')
+        relogio.innerText = ` ${hora}h : ${minutos}m : ${segundos}s`
+    }
+
+    setInterval(loop, 500)
+
+    var paralax = document.querySelector('.paralax')
+    var conteudo = document.querySelector('.conteudo')
+    var left = document.querySelector('.left')
+    var leftup = document.querySelector('.leftup')
+    var leftdown = document.querySelector('.leftdown')
+    var right = document.querySelector('.right')
+    var rightup = document.querySelector('.rightup')
+    var rightdown = document.querySelector('.rightdown')
+
+
+    leftup.addEventListener('mouseenter', enterlup)
+    leftdown.addEventListener('mouseenter', enterldown)
+    rightup.addEventListener('mouseenter', enterrup)
+    rightdown.addEventListener('mouseenter', enterrdown)
+
+    leftup.addEventListener('mouseleave', leave)
+    leftdown.addEventListener('mouseleave', leave)
+    rightup.addEventListener('mouseleave', leave)
+    rightdown.addEventListener('mouseleave', leave)
+
+
+
+    function enterlup() {
+        conteudo.classList.add('actlup')
+    }
+
+    function enterldown() {
+        conteudo.classList.add('actldown')
+    }
+
+
+    function enterrup() {
+        conteudo.classList.add('actrup')
+    }
+
+    function enterrdown() {
+        conteudo.classList.add('actrdown')
+    }
+
+    function leave() {
+        conteudo.classList.remove('actlup')
+        conteudo.classList.remove('actldown')
+        conteudo.classList.remove('actrup')
+        conteudo.classList.remove('actrdown')
+    }
+
+
+
+
+</script>
+
+</html>
