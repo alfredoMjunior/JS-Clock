@@ -1,0 +1,139 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+    height: 100%;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    transition: .5s;
+    background: linear-gradient(45deg, rgb(33, 179, 4), rgb(207, 188, 16), rgb(101, 6, 179), rgb(119, 9, 170));
+    background-size: 400% 400%;
+    animation: back 10s ease-in-out infinite;
+}
+
+@keyframes back {
+    0% {
+        background-position: 0 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+.paralax {
+    position: absolute;
+    display: flex;
+    height: 60vh;
+    width: 750px;
+    z-index: 2;
+}
+
+.left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.leftup {
+    width: 100%;
+    height: 50%;
+}
+
+.leftdown {
+    width: 100%;
+    height: 50%;
+}
+
+.right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightup {
+    width: 100%;
+    height: 50%;
+}
+
+.rightdown {
+    width: 100%;
+    height: 50%;
+}
+
+.conteudo.actrup {
+    transform: rotate3d(5, 1, 1, 60deg);
+    transition: 8s;
+}
+
+
+.conteudo.actrdown {
+    transform: rotate3d(4, 1, 1, -320deg);
+    transition: 8s
+}
+
+.conteudo.actlup {
+    transform: rotate3d(2, 1, 1, -60deg);
+    transition: 8s
+}
+
+.conteudo.actldown {
+    transform: rotate3d(5, 1, 1, 320deg);
+    transition: 8s
+}
+
+.conteudo {
+    transform: rotate3d(1, 1, 1, 0deg);
+    min-width: fit-content;
+    height: 40vh;
+    padding: 0px 50px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: white 2px solid;
+    z-index: 1;
+    transition: 7s;
+    animation: fade 4s ease-in-out
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+        transform: translateX(-300px);
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.conteudo h1 {
+    color: white;
+    margin: 0;
+}
+
+.conteudo div.rel {
+    font-size: 2rem;
+}
+
+div.rel h1.relogio {
+    color: white;
+    transition: .5s;
+}
